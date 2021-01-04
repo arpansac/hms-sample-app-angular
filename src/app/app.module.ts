@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NbButtonModule, NbCardModule, NbLayoutModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,13 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+
+    // Nebular
+    NbThemeModule.forRoot(),
+    NbLayoutModule,
+    NbSidebarModule.forRoot(),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
