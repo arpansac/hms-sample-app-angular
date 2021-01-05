@@ -1,0 +1,28 @@
+<div class="create-room-form">
+  <div class="d-flex align-items-center">
+    <button nbButton ghost (click)="setStage(formStages.ROOM)">
+      <nb-icon icon="arrow-back"></nb-icon>
+    </button>
+    <h5 class="p-0 m-0">Create a Room</h5>
+  </div>
+  <form [formGroup]="createRoomForm" (ngSubmit)="createRoom()">
+    <div class="field mb-2">
+      <input type="text" nbInput fullWidth size="large" formControlName="room_name" placeholder="Room Name*">
+    </div>
+    <div class="field mb-2">
+      <input type="text" nbInput fullWidth size="large" formControlName="username" placeholder="Username*">
+    </div>
+    <div class="field mb-2">
+      <input type="text" nbInput fullWidth size="large" formControlName="role" placeholder="Role*">
+    </div>
+    <div class="field mb-2">
+      <nb-checkbox status="basic" formControlName="record">
+        Record Room?
+      </nb-checkbox>
+    </div>
+
+    <div class="field">
+      <button type="submit" nbButton fullWidth status="primary" [disabled]="!createRoomForm.valid">Create Room</button>
+    </div>
+  </form>
+</div>

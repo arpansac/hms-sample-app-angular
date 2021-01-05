@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class AppStateService {
-
-  
+export class HmsManagerService {
 
   constructor() { }
 }

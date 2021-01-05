@@ -1,3 +1,4 @@
+import { FormStageService, FORM_STAGES } from '../../services/form-stage.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
+  formStage: any;
+  formStages = FORM_STAGES;
 
-  constructor() { }
+  constructor(
+    private formStageService: FormStageService
+  ) { }
 
   ngOnInit(): void {
+
+    // set the form stage for rendering the desired stage
+    this.formStageService.formStage$.subscribe(
+      data => this.formStage = data
+    );
+
   }
 
   // form states
@@ -17,6 +28,6 @@ export class LoginFormComponent implements OnInit {
   // JOIN_ROOM
   // CREATE ROOM
   // PERMISSION
-  // 
+  //
 
 }

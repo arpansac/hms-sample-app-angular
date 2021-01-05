@@ -1,0 +1,23 @@
+<div class="create-room-form">
+  <div class="d-flex align-items-center">
+    <button nbButton ghost (click)="setStage(formStages.ROOM)">
+      <nb-icon icon="arrow-back"></nb-icon>
+    </button>
+    <h5 class="p-0 m-0">Join a Room</h5>
+  </div>
+  <form [formGroup]="joinRoomForm" (ngSubmit)="joinRoom()">
+    <div class="field mb-2">
+      <input type="text" nbInput fullWidth size="large" formControlName="room_id" placeholder="Room Name*">
+    </div>
+    <div class="field mb-2">
+      <input type="text" nbInput fullWidth size="large" formControlName="username" placeholder="Username*">
+    </div>
+    <div class="field mb-2">
+      <input type="text" nbInput fullWidth size="large" formControlName="role" placeholder="Role*">
+    </div>
+
+    <div class="field mb-2">
+      <button type="submit" nbButton fullWidth status="primary" outline [disabled]="!joinRoomForm.valid">Join Room</button>
+    </div>
+  </form>
+</div>

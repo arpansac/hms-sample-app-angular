@@ -1,10 +1,16 @@
 <div class="login-form">
-  <nb-card>
-    <nb-card-header>
-      <button nbButton>
-        Back
-      </button>
-    </nb-card-header>
-    <nb-card-body></nb-card-body>
-  </nb-card>
+  <div class="stage-form">
+    <nb-card>
+      <nb-card-header>
+        100ms Conference
+      </nb-card-header>
+      <nb-card-body [ngSwitch]="formStage">
+        <app-room-form *ngSwitchCase="formStages.ROOM"></app-room-form>
+        <app-create-room-form *ngSwitchCase="formStages.CREATE_ROOM"></app-create-room-form>
+        <app-join-room-form *ngSwitchCase="formStages.JOIN_ROOM"></app-join-room-form>
+        <app-permission-form *ngSwitchCase="formStages.PERMISSION"></app-permission-form>
+        <app-preview *ngSwitchCase="formStages.PERMISSION"></app-preview>
+      </nb-card-body>
+    </nb-card>
+  </div>
 </div>
