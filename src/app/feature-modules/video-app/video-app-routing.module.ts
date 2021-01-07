@@ -5,7 +5,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { VideoAppComponent } from './components/video-app/video-app.component';
 
 const routes: Routes = [
-  { path: '', component: LoginFormComponent }
+  { path: '', component: LoginFormComponent },
+  { path: ':room_id', component: VideoAppComponent }
 ];
 
 @NgModule({

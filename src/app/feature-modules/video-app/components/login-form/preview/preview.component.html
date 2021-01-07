@@ -1,1 +1,30 @@
-<p>preview works!</p>
+<div class="preview">
+  <div class="local-video">
+    <video src="{{localMediaStream}}"></video>
+    <div class="controls"></div>
+  </div>
+  <div class="sources">
+    <!-- video source -->
+    <label>
+      Video Device
+      <nb-select name="videoDevices" status="primary" size="medium" [(ngModel)]="selectedVideoDevice" [ngModelOptions]="{standalone: true}" ngDefaultControl>
+        <nb-option *ngFor="let dev of videoDevices" [value]="dev.deviceId"> {{dev.label}} </nb-option>
+      </nb-select>
+    </label>
+
+    <!-- mic source -->
+    <label>
+      Audio Device
+      <nb-select name="audioDevices" status="primary" size="medium" [(ngModel)]="selectedAudioDevice" [ngModelOptions]="{standalone: true}" ngDefaultControl>
+        <nb-option *ngFor="let dev of audioDevices" [value]="dev.deviceId"> {{dev.label}} </nb-option>
+      </nb-select>
+    </label>
+  </div>
+
+  <div>
+    <button nbButton status="primary" [routerLink]="[roomId]" [ngModel]="selectedVideoDevice">
+      Join
+    </button>
+  </div>
+
+</div>
