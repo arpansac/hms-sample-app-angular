@@ -1,0 +1,15 @@
+.preview {
+  .local-video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+
+    width: 240px;
+    height: 180px;
+    margin: 0 auto;
+    video {
+      width: 100%;
+    }
+  }
+}

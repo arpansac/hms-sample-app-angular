@@ -1,28 +1,46 @@
 <div class="preview">
   <div class="local-video">
-    <video src="{{localMediaStream}}"></video>
+    <video #previewVideo autoplay [muted]="true" playsinline></video>
     <div class="controls"></div>
   </div>
-  <div class="sources">
+  <div class="sources d-flex flex-column mt-4">
     <!-- video source -->
     <label>
       Video Device
-      <nb-select name="videoDevices" status="primary" size="medium" [(ngModel)]="selectedVideoDevice" [ngModelOptions]="{standalone: true}" ngDefaultControl>
-        <nb-option *ngFor="let dev of videoDevices" [value]="dev.deviceId"> {{dev.label}} </nb-option>
+      <nb-select
+        name="videoDevices"
+        status="primary"
+        size="medium"
+        [(ngModel)]="selectedVideoDevice"
+        [ngModelOptions]="{standalone: true}"
+        ngDefaultControl
+        fullWidth
+        (selectedChange)="setSelectedDevices()"
+        >
+        <nb-option *ngFor="let dev of videoDevices" [value]="dev"> {{dev.label}} </nb-option>
       </nb-select>
     </label>
 
     <!-- mic source -->
     <label>
       Audio Device
-      <nb-select name="audioDevices" status="primary" size="medium" [(ngModel)]="selectedAudioDevice" [ngModelOptions]="{standalone: true}" ngDefaultControl>
-        <nb-option *ngFor="let dev of audioDevices" [value]="dev.deviceId"> {{dev.label}} </nb-option>
+      <nb-select
+        name="audioDevices"
+        status="primary"
+        size="medium"
+        [(ngModel)]="selectedAudioDevice"
+        [ngModelOptions]="{standalone: true}"
+        ngDefaultControl
+        fullWidth
+        (selectedChange)="setSelectedDevices()"
+        >
+        <nb-option *ngFor="let dev of audioDevices" [value]="dev"> {{dev.label}} </nb-option>
       </nb-select>
     </label>
   </div>
 
   <div>
-    <button nbButton status="primary" [routerLink]="[roomId]" [ngModel]="selectedVideoDevice">
+    <button nbButton status="primary" [routerLink]="[roomId]" fullWidth>
       Join
     </button>
   </div>

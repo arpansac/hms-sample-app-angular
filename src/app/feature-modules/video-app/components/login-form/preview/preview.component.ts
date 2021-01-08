@@ -1,5 +1,5 @@
 import { HmsApiService } from './../../../services/hms-api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HmsClientService } from '../../../services/hms-client.service';
 import { Router } from '@angular/router';
 import { LocalMediaService } from '../../../services/local-media.service';
@@ -10,14 +10,16 @@ import { LocalMediaService } from '../../../services/local-media.service';
   styleUrls: ['./preview.component.scss']
 })
 export class PreviewComponent implements OnInit {
-  roomId = null;
-  audioDevices = null;
-  videoDevices = null;
+  @ViewChild('previewVideo', {static: true}) previewVideo: ElementRef;
 
-  selectedVideoDevice = null;
-  selectedAudioDevice = null;
+  roomId: string;
+  audioDevices: Array<any>;
+  videoDevices: Array<any>;
 
-  localMediaStream = null;
+  selectedVideoDevice: Object;
+  selectedAudioDevice: Object;
+
+  localMediaStream: any;
 
   constructor(
     private hmsClientService: HmsClientService,
@@ -28,9 +30,20 @@ export class PreviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.roomId = this.hmsClientService.roomId;
-
+    this.localMediaService.getUserMedia({audio: true, video: true});
+    this.localMediaService.getDevices();
     this.localMediaService.localMediaStream$.subscribe(
-      data => this.localMediaStream = data
+      data => {
+        console.log(data);
+        if (data) {
+          let video = this.previewVideo.nativeElement;
+          video.srcObject = data;
+          // video.onloadedmetadata = () => {
+          //   video.play();
+          // };
+        }
+      }
+
     );
 
     this.localMediaService.audioDevices$.subscribe(

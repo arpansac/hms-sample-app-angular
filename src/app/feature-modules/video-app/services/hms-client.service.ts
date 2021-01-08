@@ -5,11 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class HmsClientService {
 
-  private _username = null;
-  private _token = null;
-  private _role = null;
-  private _roomId = null;
-  private _roomName = null;
+  private _username: string;
+  private _token: string;
+  private _role: string;
+  private _roomId: string;
+  private _roomName: string;
 
   constructor() { }
 
