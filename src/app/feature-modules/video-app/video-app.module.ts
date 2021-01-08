@@ -13,6 +13,7 @@ import { PreviewComponent } from './components/login-form/preview/preview.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
+import { ConferenceRoomComponent } from './components/conference-room/conference-room.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { VideoPlayerComponent } from './components/video-player/video-player.com
     CreateRoomFormComponent,
     PermissionFormComponent,
     PreviewComponent,
-    VideoPlayerComponent],
+    VideoPlayerComponent,
+    ConferenceRoomComponent],
   imports: [
     CommonModule,
     VideoAppRoutingModule,

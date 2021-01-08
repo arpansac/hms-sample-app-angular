@@ -30,6 +30,11 @@ export class HmsClientService {
     this._roomId = value;
   }
 
+  get roomId() {
+    return this._roomId;
+  }
+
+
   set roomName(value: any) {
     this._roomName = value;
   }

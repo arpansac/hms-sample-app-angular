@@ -16,10 +16,13 @@ export class PreviewComponent implements OnInit {
   audioDevices: Array<any>;
   videoDevices: Array<any>;
 
-  selectedVideoDevice: Object;
-  selectedAudioDevice: Object;
+  selectedVideoDevice: any;
+  selectedAudioDevice: any;
 
   localMediaStream: any;
+
+  camera = true;
+  mic = true;
 
   constructor(
     private hmsClientService: HmsClientService,
@@ -30,46 +33,55 @@ export class PreviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.roomId = this.hmsClientService.roomId;
-    this.localMediaService.getUserMedia({audio: true, video: true});
     this.localMediaService.getDevices();
     this.localMediaService.localMediaStream$.subscribe(
       data => {
-        console.log(data);
         if (data) {
           let video = this.previewVideo.nativeElement;
           video.srcObject = data;
-          // video.onloadedmetadata = () => {
-          //   video.play();
-          // };
         }
       }
 
     );
 
-    this.localMediaService.audioDevices$.subscribe(
+    this.localMediaService.mediaDevices$.subscribe(
       data => {
-        this.audioDevices = data;
+        this.audioDevices = data.audio;
+        this.videoDevices = data.video;
+
+        if (this.audioDevices) {
+          this.selectedAudioDevice = this.audioDevices[0];
+        }
+
+        if (this.videoDevices) {
+          this.selectedVideoDevice = this.videoDevices[0];
+        }
+
+        if (this.selectedAudioDevice || this.selectedVideoDevice) {
+          this.setSelectedDevices();
+        }
       }
     );
 
-    this.localMediaService.videoDevices$.subscribe(
-      data => {
-        this.videoDevices = data;
-      }
-    );
-
-    this.localMediaService.selectedAudioDevice$.subscribe(
-      data => this.selectedAudioDevice = data
-    );
-
-    this.localMediaService.selectedVideoDevice$.subscribe(
-      data => this.selectedVideoDevice = data
-    );
   }
 
 
   setSelectedDevices() {
-    this.localMediaService.selectDevices(this.selectedAudioDevice, this.selectedVideoDevice);
+    this.localMediaService.selectDevices(
+      (this.mic ? this.selectedAudioDevice : null),
+      (this.camera ? this.selectedVideoDevice : null)
+    );
+  }
+
+
+  toggleMic() {
+    this.mic = !this.mic;
+    this.setSelectedDevices();
+  }
+
+  toggleCamera() {
+    this.camera = !this.camera;
+    this.setSelectedDevices();
   }
 
 

@@ -1,7 +1,14 @@
 <div class="preview">
   <div class="local-video">
     <video #previewVideo autoplay [muted]="true" playsinline></video>
-    <div class="controls"></div>
+    <div class="controls">
+      <button nbButton ghost (click)="toggleCamera()">
+        <nb-icon icon="{{camera ? 'video' : 'video-off'}}"></nb-icon>
+      </button>
+      <button nbButton ghost (click)="toggleMic()">
+        <nb-icon icon="{{mic ? 'mic' : 'mic-off'}}"></nb-icon>
+      </button>
+    </div>
   </div>
   <div class="sources d-flex flex-column mt-4">
     <!-- video source -->

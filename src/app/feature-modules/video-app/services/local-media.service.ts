@@ -6,11 +6,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class LocalMediaService {
 
-  private audioDevices: BehaviorSubject<any> = new BehaviorSubject([]);
-  public audioDevices$ = this.audioDevices.asObservable();
-
-  private videoDevices: BehaviorSubject<any> = new BehaviorSubject([]);
-  public videoDevices$ = this.videoDevices.asObservable();
+  private mediaDevices: BehaviorSubject<any> = new BehaviorSubject({});
+  public mediaDevices$ = this.mediaDevices.asObservable();
 
   private localMediaStream: BehaviorSubject<any> = new BehaviorSubject(null);
   public localMediaStream$ = this.localMediaStream.asObservable();
@@ -29,13 +26,13 @@ export class LocalMediaService {
 
 
   getUserMedia(constraints: any)  {
+    console.log(constraints);
     this.constraints.next(constraints);
-    console.log('asking for local media permission');
+    this.stopStream();
     navigator.mediaDevices
-      .getUserMedia(this.constraints.getValue())
+      .getUserMedia(constraints)
       .then((stream: MediaStream) => {
         this.localMediaStream.next(stream);
-        console.log('stream accessed', stream);
       })
       .catch((error: MediaStreamError) => {
         this.localMediaStream.error(error);
@@ -63,32 +60,37 @@ export class LocalMediaService {
             "";
         }
       }
-      this.audioDevices.next(audio);
-      this.videoDevices.next(video);
-      this.selectDevices(audio[0], video[0]);
+      this.mediaDevices.next({
+        audio: audio,
+        video: video
+      });
     }).catch(error => {
       console.log('media devices are not accessible');
     });
   }
 
   selectDevices(audioDevice: any, videoDevice: any) {
+
     this.selectedAudioDevice.next(audioDevice);
     this.selectedVideoDevice.next(videoDevice);
 
-    let constraints = {
-      audio: {
-        deviceId: {
-          exact: audioDevice.deviceId
-        }
-      },
-      video: {
-        deviceId: {
-          exact: videoDevice.deviceId
-        }
-      },
-    };
+    let constraints = <any>{};
 
+    constraints.audio = (audioDevice ? ({deviceId: {exact: audioDevice.deviceId}}) : false);
+    constraints.video = (videoDevice ? ({deviceId: {exact: videoDevice.deviceId}}) : false);
     this.getUserMedia(constraints);
+  }
+
+  stopStream() {
+
+    if (this.localMediaStream.getValue()) {
+      let tracks = this.localMediaStream.getValue().getTracks();
+
+      for (let track of tracks) {
+        track.stop();
+      }
+    }
+
   }
 
 
