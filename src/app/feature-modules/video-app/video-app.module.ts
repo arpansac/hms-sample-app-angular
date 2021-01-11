@@ -12,8 +12,8 @@ import { PermissionFormComponent } from './components/login-form/permission-form
 import { PreviewComponent } from './components/login-form/preview/preview.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { ConferenceRoomComponent } from './components/conference-room/conference-room.component';
+import { VideoPlayerComponent } from './components/conference-room/video-player/video-player.component';
 
 
 @NgModule({
@@ -25,8 +25,8 @@ import { ConferenceRoomComponent } from './components/conference-room/conference
     CreateRoomFormComponent,
     PermissionFormComponent,
     PreviewComponent,
-    VideoPlayerComponent,
-    ConferenceRoomComponent],
+    ConferenceRoomComponent,
+    VideoPlayerComponent],
   imports: [
     CommonModule,
     VideoAppRoutingModule,
