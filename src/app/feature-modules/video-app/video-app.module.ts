@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { VideoAppRoutingModule } from './video-app-routing.module';
-import { VideoAppComponent } from './components/video-app/video-app.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { NbButtonModule, NbCardModule, NbCheckboxModule, NbIconModule, NbInputModule, NbSelectModule, NbToastrModule } from '@nebular/theme';
 import { RoomFormComponent } from './components/login-form/room-form/room-form.component';
@@ -18,7 +17,6 @@ import { VideoPlayerComponent } from './components/conference-room/video-player/
 
 @NgModule({
   declarations: [
-    VideoAppComponent,
     LoginFormComponent,
     RoomFormComponent,
     JoinRoomFormComponent,

@@ -189,7 +189,7 @@ export class ConferenceRoomComponent implements OnInit {
   }
 
   updateParticipants(username, stream) {
-    this.participants[]
+    // this.participants[]
   }
 
 }
