@@ -23,11 +23,4 @@ export class LoginFormComponent implements OnInit {
 
   }
 
-  // form states
-  // ROOM
-  // JOIN_ROOM
-  // CREATE ROOM
-  // PERMISSION
-  //
-
 }

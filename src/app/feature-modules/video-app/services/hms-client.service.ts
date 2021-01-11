@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HMSPeer, HMSClientConfig, HMSClient, LocalStream } from "@100mslive/hmsvideo-web";
+import { HMS_CREDS } from 'src/environments/hms-cred';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ export class HmsClientService {
   private _role: string;
   private _roomId: string;
   private _roomName: string;
+  private _client: any;
 
   constructor() { }
 
@@ -41,6 +44,18 @@ export class HmsClientService {
 
   get roomName() {
     return this._roomName;
+  }
+
+
+  createClient() {
+    const config = new HMSClientConfig({
+      endpoint: HMS_CREDS.HMS_ENDPOINT
+    });
+
+    const peer = new HMSPeer(this.username, this.token);
+
+    const client = new HMSClient(peer, config);
+    return client;
   }
 
 }

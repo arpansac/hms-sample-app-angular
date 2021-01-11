@@ -44,8 +44,8 @@ export class LocalMediaService {
   getDevices() {
     navigator.mediaDevices.enumerateDevices()
     .then(devices => {
-      let audio = [];
-      let video = [];
+      let audio: any = [];
+      let video: any = [];
 
       for (let dev of devices) {
         // skipping audiooutput devices

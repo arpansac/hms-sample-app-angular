@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@100mslive/hmsvideo-web": "^0.9.8",
+    "@100mslive/hmsvideo-web": "^0.9.10",
     "@angular/animations": "^11.0.5",
     "@angular/cdk": "^11.0.3",
     "@angular/common": "~11.0.5",
@@ -26,6 +26,8 @@
     "@nebular/eva-icons": "^6.2.1",
     "@nebular/theme": "^6.2.1",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
+    "@types/events": "^3.0.0",
+    "@types/protoo-client": "^4.0.0",
     "bootstrap": "^4.5.0",
     "eva-icons": "^1.1.3",
     "patch-package": "^6.2.2",

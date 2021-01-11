@@ -40,6 +40,7 @@ export class CreateRoomFormComponent implements OnInit {
   createRoom() {
     this.hmsClientService.role = this.createRoomForm.value.role;
     this.hmsClientService.username = this.createRoomForm.value.username;
+
     this.hmsApiService.createRoom(this.createRoomForm.value.room_name, this.createRoomForm.value.record).subscribe(
       data => {
 
